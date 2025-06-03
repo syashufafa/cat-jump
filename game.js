@@ -2,9 +2,12 @@ const bgm = document.getElementById('bgm'); //배경음악불러오기
 const catImg = new Image();
 catImg.src = 'sia.png'; // 파일명을 실제 저장한 이름으로 맞추세요
 const bgImg = new Image();
+
 bgImg.src = 'background_image1.jpg'; // 실제 파일명에 맞게 수정
 const bgImg2 = new Image();
 bgImg2.src = 'background_image2.jpg'; // 두 번째 배경 이미지 추가
+const bgImg3 = new Image();
+bgImg3.src = 'background_image3.jpg'; // 세 번째 배경 이미지 추가
 
 // 브라우저 정책상 사용자 상호작용 후에만 재생 가능하므로, 첫 입력 시 재생
 let bgmStarted = false;
@@ -233,7 +236,18 @@ if (catImg.complete) {
   */
 // 화면 그리기 함수
 function draw() {
-    if (score >= 500) {
+        if (score >= 1500) {
+        if (bgImg3.complete) {
+            ctx.drawImage(bgImg3, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        } else {
+            // 이미지가 아직 안 불러와졌을 때는 그라데이션 배경
+            let bgGradient = ctx.createLinearGradient(0, 0, 0, CANVAS_HEIGHT);
+            bgGradient.addColorStop(0, "#ffe082");
+            bgGradient.addColorStop(1, "#e0f7fa");
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        }
+    } else if (score >= 500) {
         if (bgImg2.complete) {
             ctx.drawImage(bgImg2, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         } else {
